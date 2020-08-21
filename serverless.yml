@@ -20,13 +20,22 @@ provider:
   # the following line. Also, make sure to not
   # commit your .env.
   #
-  #environment:
-  #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+  environment:
+   SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
 
 functions:
+  sendMail:
+    handler: sendMail.main
+    events:
+      - http:
+          path: send
+          method: post
   hello:
     handler: handler.hello
     events:
       - http:
           path: hello
           method: get
+
+resources:
+  - ${file(resources/api-gateway-errors.yml)}
