@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Minion from './assets/minion.png'
 import MinionSection1 from './assets/minion-section-1.png'
 import MinionKevin from './assets/minion-kevin.png'
@@ -9,9 +9,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalfAlt, faShoppingCart, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { faBattleNet } from '@fortawesome/free-brands-svg-icons'
 import { faGrinTongueWink, faHeart } from '@fortawesome/free-regular-svg-icons'
+import { API } from "aws-amplify"
 import './App.css';
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [minion, setMinion] = useState("");
+  const [quantity, setQuantity] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await API.post()
+  }
+
   return (
     <div className="App">
       <header>
@@ -96,16 +107,34 @@ function App() {
           </p>
           <div className="section-3-box">
             <h1>Cadastro de Reserva</h1>
-            <form>
-              <input type="text" name="name" placeholder="Digite seu nome" />
-              <input type="email" name="email" placeholder="Digite seu email" />
+            <form onSubmit={handleSubmit}>
+              <input 
+                type="text" 
+                name="name" 
+                value={name} 
+                placeholder="Digite seu nome" 
+                onChange={e => setName(e.target.value)}
+              />
+              <input 
+                type="email" 
+                name="email" 
+                value={email}
+                placeholder="Digite seu email" 
+                onChange={e => setEmail(e.target.value)}
+              />
               <label>Escolha seu personagem:</label>
-              <select name="minion">
+              <select name="minion" value={minion} onChange={e => setMinion(e.target.value)}>
                 <option value="mark">Mark</option>
                 <option value="kevin">Kevin</option>
                 <option value="jerry">Jerry</option>
               </select>
-              <input type="text" name="quantity" placeholder="Digite a quantidade" />
+              <input 
+                type="text" 
+                name="quantity" 
+                value={quantity}
+                placeholder="Digite a quantidade" 
+                onChange={e => setQuantity(e.target.value)}
+              />
               <button type="submit">
                 <FontAwesomeIcon icon={faPaperPlane} />
                 Enviar
