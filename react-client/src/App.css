@@ -1,38 +1,157 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 1080px) {
+  html {
+    font-size: 58%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (max-width: 720px) {
+  html {
+    font-size: 54%;
+  }
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Titillium Web', sans-serif;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: #7159c1;
+  color: #fff;
+}
+
+.center {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.App {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  background-image: url(assets/banner-1.png);
+  background-repeat: no-repeat;
+}
+
+header, section {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 15rem 3rem;
+  border: 1px solid red;
+  
+}
+
+header div {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+header img {
+  height: 500px;
+}
+
+header h1 {
+  color: #fafafa;
+  font-size: 5rem;
+}
+
+header p {
+  color: #fafafa;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+header button {
+  width: 20rem;
+  margin-top: 4rem;
+  padding: 1.3rem 1rem;
+  border-radius: 2rem;
+  border: 0;
+  transition-duration: 1s;
+  background: linear-gradient(-90deg, #1d46f5 0%, #6809dc 100%);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+header button span {
+  padding-left: 1rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+header button:hover {
+  background-size: 200% auto;
+}
+
+.fa-shopping-cart {
+  color: #FFF;
+}
+
+.fa-star-half-alt,
+.fa-star {
+  margin-top: 1rem;
+  font-size: 2.5rem;
+  color: #F4DD03;
+}
+
+.star-svg {
+  display: flex;
+  flex-direction: row;
+}
+
+section div {
+  padding-top: 10rem;
+  width: 500px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.section-1 {
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-1 h3 {
+  background: linear-gradient(-90deg, #0985f9 0%, #6809dc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: transparent;
+}
+
+.section-1 h2 {
+  font-weight: 700;
+  font-size: 4rem;
+  color: #130f40;
+  margin-bottom: 2rem;
+  line-height: 4rem;
+}
+
+.section-1 p {
+  font-weight: 400;
+  color: #555;
 }
