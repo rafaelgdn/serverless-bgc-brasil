@@ -4,8 +4,9 @@ import MinionSection1 from './assets/minion-section-1.png'
 import MinionKevin from './assets/minion-kevin.png'
 import MinionMark from './assets/minion-mark.png'
 import MinionJerry from './assets/minion-jerry.png'
+import MinionBox from './assets/minion-box.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faStarHalfAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faStarHalfAlt, faShoppingCart, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { faBattleNet } from '@fortawesome/free-brands-svg-icons'
 import { faGrinTongueWink, faHeart } from '@fortawesome/free-regular-svg-icons'
 import './App.css';
@@ -82,6 +83,38 @@ function App() {
           </div>
         </div>
       </section>
+      <footer>
+      <section className="section-3">
+        <div>
+          <img src={MinionBox} />
+        </div>
+        <div>
+          <h2>Reserve seu Minion</h2>
+          <p>
+            Não perca mais tempo e reserve seu minion agora, 
+            basta preencher o cadastro que entraremos em contato com você.
+          </p>
+          <div className="section-3-box">
+            <h1>Cadastro de Reserva</h1>
+            <form>
+              <input type="text" name="name" placeholder="Digite seu nome" />
+              <input type="email" name="email" placeholder="Digite seu email" />
+              <label>Escolha seu personagem:</label>
+              <select name="minion">
+                <option value="mark">Mark</option>
+                <option value="kevin">Kevin</option>
+                <option value="jerry">Jerry</option>
+              </select>
+              <input type="text" name="quantity" placeholder="Digite a quantidade" />
+              <button type="submit">
+                <FontAwesomeIcon icon={faPaperPlane} />
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+      </footer>
     </div>
   );
 }

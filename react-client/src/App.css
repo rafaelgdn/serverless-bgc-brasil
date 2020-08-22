@@ -30,11 +30,6 @@ a {
   color: inherit;
 }
 
-::selection {
-  background: #7159c1;
-  color: #fff;
-}
-
 .center {
   width: 100%;
   max-width: 1220px;
@@ -62,7 +57,6 @@ header, section {
   max-width: 1220px;
   margin: 0 auto;
   padding: 15rem 3rem;
-  border: 1px solid red;
   
 }
 
@@ -96,6 +90,7 @@ header button {
   transition-duration: 1s;
   background: linear-gradient(-90deg, #1d46f5 0%, #6809dc 100%);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
 header button span {
@@ -233,4 +228,94 @@ section div {
 
 .section-2-boxes div h3 {
   color: #130f40;
+}
+
+footer {
+  display: flex;
+  background-image: url(assets/banner-2.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  padding: 0;
+}
+
+.section-3 {
+  display: flex;
+}
+
+.section-3 div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.section-3 div h2 {
+  color: white;
+  font-size: 5rem;
+}
+
+.section-3 div p {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.section-3-box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  margin: 2rem;
+  padding: 4rem !important;
+}
+
+.section-3-box h1 {
+  color: #130f40;
+  margin-bottom: 1rem;
+}
+
+.section-3-box form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-3-box form input,
+.section-3-box form select, 
+.section-3-box form button {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  font-size: 1.5rem;
+  border: 1px solid #bbb
+}
+
+.section-3-box form label {
+  color: #130f40;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.section-3-box form button {
+  transition-duration: 1s;
+  background: linear-gradient(-90deg, #1d46f5 0%, #6809dc 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.7rem;
+  border: 0;
+  border-radius: 1rem;
+}
+
+.section-3-box form button:hover {
+  background-size: 200% auto;
+  cursor: pointer;
+}
+
+.fa-paper-plane {
+  margin-right: 1.5rem;
+  font-size: 1.7rem;
 }
