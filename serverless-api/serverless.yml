@@ -21,7 +21,20 @@ provider:
   # commit your .env.
   #
   environment:
-   SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+    tableName: log-email-minion
+    SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-2:*:*"
 
 functions:
   sendMail:
@@ -36,6 +49,8 @@ functions:
       - http:
           path: hello
           method: get
+          cors: true
+          authorizer: aws_iam
 
 resources:
   - ${file(resources/api-gateway-errors.yml)}
