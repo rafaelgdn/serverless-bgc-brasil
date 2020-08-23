@@ -29,7 +29,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "sendMail",
+        name: "mail",
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       },

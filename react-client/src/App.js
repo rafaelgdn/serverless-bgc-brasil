@@ -15,19 +15,26 @@ import './App.css';
 function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [minion, setMinion] = useState("");
+  const [minion, setMinion] = useState("Escolha um");
   const [quantity, setQuantity] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await API.post()
+    await API.post("mail", "/send", {
+      body: {
+        name,
+        email,
+        minion,
+        quantity
+      }
+    })
   }
 
   return (
     <div className="App">
       <header>
         <div className="minion-img">
-          <img src={Minion} />
+          <img src={Minion} alt="Minion" />
         </div>
         <div>
           <h1>Minion's Action Figure</h1>
@@ -66,8 +73,8 @@ function App() {
             </div>
           </div>
         </div>
-        <div>
-          <img src={MinionSection1} />
+        <div className="section-1-img">
+          <img src={MinionSection1} alt="Minion" />
         </div>
       </section>
       <section className="section-2">
@@ -82,67 +89,68 @@ function App() {
         <div className="section-2-boxes">
           <div>
             <h3>Mark</h3>
-            <img src={MinionMark} />
+            <img src={MinionMark} alt="Minion" />
           </div>
           <div>
             <h3>Kevin</h3>
-            <img src={MinionKevin} />
+            <img src={MinionKevin} alt="Minion" />
           </div>
           <div>
             <h3>Jerry</h3>
-            <img src={MinionJerry} />
+            <img src={MinionJerry} alt="Minion" />
           </div>
         </div>
       </section>
       <footer>
-      <section className="section-3">
-        <div>
-          <img src={MinionBox} />
-        </div>
-        <div>
-          <h2>Reserve seu Minion</h2>
-          <p>
-            Não perca mais tempo e reserve seu minion agora, 
-            basta preencher o cadastro que entraremos em contato com você.
+        <section className="section-3">
+          <div className="section-3-img">
+            <img src={MinionBox} alt="Minion" />
+          </div>
+          <div>
+            <h2>Reserve seu Minion</h2>
+            <p>
+              Não perca mais tempo e reserve seu minion agora,
+              basta preencher o cadastro que entraremos em contato com você.
           </p>
-          <div className="section-3-box">
-            <h1>Cadastro de Reserva</h1>
-            <form onSubmit={handleSubmit}>
-              <input 
-                type="text" 
-                name="name" 
-                value={name} 
-                placeholder="Digite seu nome" 
-                onChange={e => setName(e.target.value)}
-              />
-              <input 
-                type="email" 
-                name="email" 
-                value={email}
-                placeholder="Digite seu email" 
-                onChange={e => setEmail(e.target.value)}
-              />
-              <label>Escolha seu personagem:</label>
-              <select name="minion" value={minion} onChange={e => setMinion(e.target.value)}>
-                <option value="mark">Mark</option>
-                <option value="kevin">Kevin</option>
-                <option value="jerry">Jerry</option>
-              </select>
-              <input 
-                type="text" 
-                name="quantity" 
-                value={quantity}
-                placeholder="Digite a quantidade" 
-                onChange={e => setQuantity(e.target.value)}
-              />
-              <button type="submit">
-                <FontAwesomeIcon icon={faPaperPlane} />
+            <div className="section-3-box">
+              <h1>Cadastro de Reserva</h1>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  placeholder="Digite seu nome"
+                  onChange={e => setName(e.target.value)}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Digite seu email"
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <label>Escolha seu personagem:</label>
+                <select name="minion" defaultValue={minion} onChange={e => setMinion(e.target.value)}>
+                  <option>Escolha um...</option>
+                  <option value="mark">Mark</option>
+                  <option value="kevin">Kevin</option>
+                  <option value="jerry">Jerry</option>
+                </select>
+                <input
+                  type="text"
+                  name="quantity"
+                  value={quantity}
+                  placeholder="Digite a quantidade"
+                  onChange={e => setQuantity(e.target.value)}
+                />
+                <button type="submit">
+                  <FontAwesomeIcon icon={faPaperPlane} />
                 Enviar
               </button>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </footer>
     </div>
   );
