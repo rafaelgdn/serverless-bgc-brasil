@@ -53,7 +53,7 @@ export function main(event, context, callback) {
         const response = {
           statusCode: 500,
           headers: headers,
-          body: JSON.stringify({ error: error })
+          body: JSON.stringify({ error: "DB Error" })
         };
         callback(null, response);
         return;
@@ -62,7 +62,7 @@ export function main(event, context, callback) {
       callback(null, {
         statusCode: 200,
         headers: headers,
-        body: message
+        body: JSON.stringify(params.Item)
       });
     });
 
@@ -70,7 +70,7 @@ export function main(event, context, callback) {
     callback(null, {
       statusCode: 500,
       headers: headers,
-      body: err
+      body: JSON.stringify({ error: "Email sender Error" })
     });
   });
 }
