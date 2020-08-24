@@ -18,34 +18,10 @@ export function main(event, context, callback) {
     }
   }
 
-  const params = {
-    TableName: process.env.tableName,
-    Item: {
-      logId: uuid.v1(),
-      name,
-      email,
-      minion,
-      quantity,
-      createdAt: Date.now()
-    }
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true
   };
-
-  dynamoDb.put(params, (error, data) => {
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true
-    };
-
-    if (error) {
-      const response = {
-        statusCode: 500,
-        headers: headers,
-        body: JSON.stringify({ error: error })
-      };
-      callback(null, response);
-      return;
-    };
-  });
 
   transporter.sendMail({
     from: "Rafael de Carvalho <rafaeldecarvalho.ps@gmail.com>",
@@ -54,13 +30,41 @@ export function main(event, context, callback) {
     text: "Teste",
     html: "<b>TESTE</b>"
   }).then(message => {
-    callback(null, {
-      statusCode: 200,
-      body: message
+    // E-Mail Logger
+    const params = {
+      TableName: process.env.tableName,
+      Item: {
+        logId: uuid.v1(),
+        name,
+        email,
+        minion,
+        quantity,
+        createdAt: Date.now()
+      }
+    };
+
+    dynamoDb.put(params, (error, data) => {
+      if (error) {
+        const response = {
+          statusCode: 500,
+          headers: headers,
+          body: JSON.stringify({ error: error })
+        };
+        callback(null, response);
+        return;
+      };
+
+      callback(null, {
+        statusCode: 200,
+        headers: headers,
+        body: message
+      });
     });
+
   }).catch(err => {
     callback(null, {
       statusCode: 500,
+      headers: headers,
       body: err
     });
   });
