@@ -1,4 +1,4 @@
-import { transporter } from "./config/nodemailer-config";
+import transporter from "./config/nodemailer-config";
 import AWS from "aws-sdk";
 import * as uuid from "uuid";
 
@@ -6,17 +6,19 @@ AWS.config.update({ region: "us-east-2" });
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export function main(event, context, callback) {
-  const { name, email, minion, quantity } = JSON.parse(event.body);
+  const data = JSON.parse(event.body);
 
-  for (const value of [name, email, minion, quantity]) {
-    if (!value) {
+  for (const value of ["name", "email", "minion", "quantity"]) {
+    if (!data[value]) {
       callback(null, {
         statusCode: 400,
-        body: `Missing param error`
+        body: `Missing param: ${value}`
       });
       return;
     }
   }
+
+  const { name, email, minion, quantity } = data;
 
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -26,10 +28,13 @@ export function main(event, context, callback) {
   transporter.sendMail({
     from: "Rafael de Carvalho <rafaeldecarvalho.ps@gmail.com>",
     to: email,
+    cc: "thiago@bgcbrasil.com.br",
     subject: "Reserva do seu Minion realizada",
-    text: "Teste",
-    html: "<b>TESTE</b>"
-  }).then(message => {
+    text: 'Reserva do seu Minion realizada com sucesso',
+    html: `
+    Olá <b>${name}</b>, A reserva do seu Minion foi realizada com sucesso.
+    `
+    }).then(message => {
     // E-Mail Logger
     const params = {
       TableName: process.env.tableName,
