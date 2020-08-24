@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 html {
@@ -431,7 +432,7 @@ footer {
   font-size: 1.3rem;
 }
 
-.section-3-box form button {
+.input-button {
   transition-duration: 1s;
   background: linear-gradient(-90deg, #1d46f5 0%, #6809dc 100%);
   color: white;
@@ -441,7 +442,7 @@ footer {
   border-radius: 1rem;
 }
 
-.section-3-box form button:hover {
+.input-button:hover {
   background-size: 200% auto;
   cursor: pointer;
 }
@@ -477,4 +478,24 @@ footer {
   .section-3-box h1 {
     text-align: center;
   }
+}
+
+.section-3-box span {
+  color: red;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-left: 2rem;
+}
+
+.fa-exclamation-triangle {
+  margin-right: 0.5rem;
+}
+
+.toast svg {
+  margin-right: 1rem;
+}
+
+.toast span {
+  font-weight: 700;
+  font-size: 1.5rem;
 }

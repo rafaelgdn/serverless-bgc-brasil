@@ -8,10 +8,16 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 export function main(event, context, callback) {
   const data = JSON.parse(event.body);
 
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true
+  };
+
   for (const value of ["name", "email", "minion", "quantity"]) {
     if (!data[value]) {
       callback(null, {
         statusCode: 400,
+        headers: headers,
         body: `Missing param: ${value}`
       });
       return;
@@ -20,10 +26,6 @@ export function main(event, context, callback) {
 
   const { name, email, minion, quantity } = data;
 
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true
-  };
 
   transporter.sendMail({
     from: "Rafael de Carvalho <rafaeldecarvalho.ps@gmail.com>",
@@ -70,7 +72,7 @@ export function main(event, context, callback) {
     callback(null, {
       statusCode: 500,
       headers: headers,
-      body: JSON.stringify({ error: "Email sender Error" })
+      body: JSON.stringify({ error: err })
     });
   });
 }
