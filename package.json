@@ -17,7 +17,11 @@
     "url": "https://github.com/rafaelgdn/serverless-bgc-brasil/issues"
   },
   "homepage": "https://github.com/rafaelgdn/serverless-bgc-brasil#readme",
+  "standard": {
+    "env": ["jest"]
+  },
   "devDependencies": {
+    "@types/jest": "^26.0.10",
     "git-commit-msg-linter": "^2.4.5",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.12"

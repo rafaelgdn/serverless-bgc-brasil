@@ -6,12 +6,21 @@ AWS.config.update({ region: 'us-east-2' })
 const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 export function main ({ body }, context, callback) {
-  const data = JSON.parse(body)
-
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': true
   }
+
+  if (!body) {
+    callback(null, {
+      statusCode: 400,
+      headers: headers,
+      body: 'Missing body'
+    })
+    return
+  }
+
+  const data = JSON.parse(body)
 
   for (const value of ['name', 'email', 'minion', 'quantity']) {
     if (!data[value]) {
