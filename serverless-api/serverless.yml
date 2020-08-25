@@ -45,5 +45,9 @@ functions:
           method: post
           cors: true
 
+custom:
+  bundle:
+    linting: false
+
 resources:
   - ${file(resources/api-gateway-errors.yml)}

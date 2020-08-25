@@ -1,42 +1,41 @@
-import transporter from "./config/nodemailer-config";
-import AWS from "aws-sdk";
-import * as uuid from "uuid";
+import transporter from './config/nodemailer-config'
+import AWS from 'aws-sdk'
+import * as uuid from 'uuid'
 
-AWS.config.update({ region: "us-east-2" });
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+AWS.config.update({ region: 'us-east-2' })
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-export function main(event, context, callback) {
-  const data = JSON.parse(event.body);
+export function main (event, context, callback) {
+  const data = JSON.parse(event.body)
 
   const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": true
-  };
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true
+  }
 
-  for (const value of ["name", "email", "minion", "quantity"]) {
+  for (const value of ['name', 'email', 'minion', 'quantity']) {
     if (!data[value]) {
       callback(null, {
         statusCode: 400,
         headers: headers,
         body: `Missing param: ${value}`
-      });
-      return;
+      })
+      return
     }
   }
 
-  const { name, email, minion, quantity } = data;
-
+  const { name, email, minion, quantity } = data
 
   transporter.sendMail({
-    from: "Rafael de Carvalho <rafaeldecarvalho.ps@gmail.com>",
+    from: 'Rafael de Carvalho <rafaeldecarvalho.ps@gmail.com>',
     to: email,
-    cc: "thiago@bgcbrasil.com.br",
-    subject: "Reserva do seu Minion realizada",
+    cc: 'thiago@bgcbrasil.com.br',
+    subject: 'Reserva do seu Minion realizada',
     text: 'Reserva do seu Minion realizada com sucesso',
     html: `
     Olá <b>${name}</b>, A reserva do seu Minion foi realizada com sucesso.
     `
-    }).then(message => {
+  }).then(message => {
     // E-Mail Logger
     const params = {
       TableName: process.env.tableName,
@@ -48,31 +47,30 @@ export function main(event, context, callback) {
         quantity,
         createdAt: Date.now()
       }
-    };
+    }
 
     dynamoDb.put(params, (error, data) => {
       if (error) {
         const response = {
           statusCode: 500,
           headers: headers,
-          body: JSON.stringify({ error: "DB Error" })
-        };
-        callback(null, response);
-        return;
+          body: JSON.stringify({ error: 'DB Error' })
+        }
+        callback(null, response)
+        return
       };
 
       callback(null, {
         statusCode: 200,
         headers: headers,
         body: JSON.stringify(params.Item)
-      });
-    });
-
+      })
+    })
   }).catch(err => {
     callback(null, {
       statusCode: 500,
       headers: headers,
       body: JSON.stringify({ error: err })
-    });
-  });
+    })
+  })
 }

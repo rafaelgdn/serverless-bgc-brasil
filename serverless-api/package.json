@@ -14,9 +14,11 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.738.0",
+    "git-commit-msg-linter": "^2.4.5",
     "serverless-bundle": "2.0.0",
     "serverless-dotenv-plugin": "^2.1.1",
-    "serverless-offline": "^5.3.3"
+    "serverless-offline": "^5.3.3",
+    "standard": "^14.3.4"
   },
   "dependencies": {
     "aws-amplify": "^3.0.24",
