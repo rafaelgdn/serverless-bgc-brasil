@@ -15,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.5.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.3",
     "react-toastify": "^6.0.8"
   },
@@ -23,6 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "standard": {
+    "env": ["jest"]
   },
   "eslintConfig": {
     "extends": "react-app"

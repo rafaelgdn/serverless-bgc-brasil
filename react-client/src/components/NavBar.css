@@ -1,0 +1,29 @@
+.navbar {
+  height: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem;
+  background-image: url(../assets/banner-1.png)
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  background: #F4DD03;
+  border-radius: 4px;
+  height: 3rem;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 2rem;
+}
+
+.navbar-links a {
+  margin-left: 1rem;
+  font-weight: 700;
+  color: #130f40;
+}
+
+.navbar-links a:hover {
+  color: #4765E9;
+  border-bottom: 3px solid #F4DD03;
+}
