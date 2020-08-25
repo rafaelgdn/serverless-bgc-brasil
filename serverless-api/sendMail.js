@@ -43,6 +43,13 @@ export function main ({ body }, context, callback) {
     text: 'Reserva do seu Minion realizada com sucesso',
     html: `
     Olá <b>${name}</b>, A reserva do seu Minion foi realizada com sucesso.
+    <br />
+    <br />
+    Dados do cadastro:<br />
+    nome: ${name}<br />
+    email: ${email}<br />
+    nome do minion: ${minion}<br />
+    quantidade: ${quantity}<br />
     `
   }).then(message => {
     // E-Mail Logger
