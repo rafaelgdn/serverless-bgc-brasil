@@ -5,8 +5,8 @@ import * as uuid from 'uuid'
 AWS.config.update({ region: 'us-east-2' })
 const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-export function main (event, context, callback) {
-  const data = JSON.parse(event.body)
+export function main ({ body }, context, callback) {
+  const data = JSON.parse(body)
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
